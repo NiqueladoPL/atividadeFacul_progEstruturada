@@ -14,7 +14,7 @@ while (mainLoop == 1):
         op = input(
             "ERRO!\nDigite o NÚMERO da opção desejada:\n1) Cadastrar Novo Item\n2) Itens Cadastrados\n3) Vender um Item\n4) Sair\n->")
 
-# Cadastro de novo item---------------------------------------------------------------------------------------------------------------------------
+# Cadastro de novo item---------------------------------------------------------------------------------------------
     while (op == "1"):
         os.system('cls')
 
@@ -48,7 +48,7 @@ while (mainLoop == 1):
             op = 0
 
 
-# Itens Cadastrados--------------------------------------------------------------------------------------------------------------------------------
+# Itens Cadastrados-------------------------------------------------------------------------------------------------
     while (op == "2"):
         os.system('cls')
         if len(itens) == 0:
@@ -66,8 +66,7 @@ while (mainLoop == 1):
             op = 1
 
 
-# Vender um item------------
-# --------------------------------------------------------------------------------------------------------------------
+# Vender um item---------------------------------------------------------------------------------------------------
     while (op == "3"):
         os.system('cls')
         if len(itens) == 0:
@@ -81,26 +80,32 @@ while (mainLoop == 1):
                 opVenda = input(
                     "Opção INVÁLIDA\nDigite 1 para Vender Item ou 2 para Voltar ao Menu\n->")
                 os.system('cls')
-            
-            if(opVenda == "1"):
+
+            if (opVenda == "1"):
                 os.system('cls')
                 print(f"Itens Disponíveis para Venda: {len(itens)}\n")
                 for i in itens:
-                    print(f'Item: {i["item"]}\nPreço: {i["preco"]}\nVolume: {i["volume"]}\nQuantidade disponível: {i["qtd"]}\n--------------------------')
+                    print(
+                        f'Item: {i["item"]}\nPreço: {i["preco"]}\nVolume: {i["volume"]}\nQuantidade disponível: {i["qtd"]}\n--------------------------')
 
-                item_venda = input("\nDigite o nome do item que deseja vender: ")
-                if item_venda in itens.keys():
-                    itens[item_venda] = "Tangerina"
-                    op = 0
-                    
+                item_venda = input(
+                    "\nDigite o nome do item que deseja vender: ")
+                acc = 0
+                for i in itens:
+                    if i["item"] == item_venda:
+                        i["qtd"] -= 1
 
+                        if i["qtd"] < 1:
+                            itens.pop(acc)
+                    acc += 1
 
-            if(opVenda == "2"):
+            elif (opVenda == "2"):
                 os.system('cls')
                 print("Voltando...")
                 op = 0
 
-# SAIR --- OP=4
+
+# SAIR --- OP=4 ------------------------------------------------------------------
     if (op == "4"):
         mainLoop = 0
 
